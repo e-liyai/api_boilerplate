@@ -8,6 +8,10 @@ app.use(volleyball)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.get('/', function(req, res, next) {
+  res.send('hi!')
+})
+
 const server = app.listen(4000, function() {
   console.log('Listening on port ', server.address().port)
 })
