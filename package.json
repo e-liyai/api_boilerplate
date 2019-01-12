@@ -1,0 +1,14 @@
+{
+  "name": "api_boilerplate",
+  "version": "1.0.0",
+  "description": "quick node backend setup",
+  "main": "app.js",
+  "repository": "https://github.com/e-liyai/api_boilerplate.git",
+  "author": "e-liyai",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "volleyball": "^1.5.1"
+  }
+}
