@@ -11,6 +11,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/users', userRouter)
 
-const server = app.listen(4000, function() {
+const server = app.listen(4000, () => {
   console.log('Listening on port ', server.address().port)
 })

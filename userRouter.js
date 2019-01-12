@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const users = require('./users')
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send(users)
 })
 
 router.get('/:id', function (req, res, next) {
-  const id = req.params.id
+  // const id = req.params.id
+  const {id} = req.params
   const reqQuery = req.query
   const user = users[id]
   const response = {}
