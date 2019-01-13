@@ -1,7 +1,9 @@
 const router = require('express').Router()
 const users = require('./users')
+const userModel = require('./db').users
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  const users = await userModel.findAll()
   res.send(users)
 })
 
@@ -23,10 +25,9 @@ router.get('/:id', function (req, res, next) {
   }
 })
 
-router.post('/', function (req, res, next) {
-  const user = req.body
-  users.push(user)
-  res.send(user)
+router.post('/',  async function (req, res, next) {
+  const createdUser = await userModel.create(req.body)
+  res.send(createdUser)
 })
 
 router.put('/:id', function(req, res, next) {
