@@ -20,6 +20,7 @@ const users = db.define('users', {
   age: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 1,
   },
   location: {
     type: Sequelize.STRING,
@@ -27,10 +28,25 @@ const users = db.define('users', {
 }, {
   getterMethods: {
     fullName: function() {
-      return this.firstName + ' ' + this.lastName;
+      return `${this.firstName} ${this.lastName}`;
+    }
+  },
+  hooks: {
+    beforeValidate: function() {
+
     }
   }
 })
+
+// Class Method
+users.associate = function () {
+
+};
+
+// Instance method
+users.prototype.bio = () => {
+  return `${this.fullName}  from  ${this.location}`;
+}
 
 module.exports = {
   users,

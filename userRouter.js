@@ -7,22 +7,37 @@ router.get('/', async (req, res, next) => {
   res.send(users)
 })
 
-router.get('/:id', function (req, res, next) {
-  // const id = req.params.id
-  const {id} = req.params
-  const reqQuery = req.query
-  const user = users[id]
-  const response = {}
+router.get('/:id', async function (req, res, next) {
 
-  const isEmptyQuery = Object.keys(reqQuery).length
-
-  if(!isEmptyQuery) res.send(user)
-  else {
-    Object.keys(reqQuery).forEach(function(key) {
-       response[key] = user[key]
+  try{
+    const user = await userModel.findOne({
+      where: {
+        id: req.params.id
+      }
     })
-    res.send(response)
+    if (!user) res.send('not found!')
+    else {
+      console.log(user.bio())
+      res.send(user)
+    }
+  } catch (ex) {
+
   }
+
+  // const {id} = req.params
+  // const reqQuery = req.query
+  // const user = users[id]
+  // const response = {}
+  //
+  // const isEmptyQuery = Object.keys(reqQuery).length
+  //
+  // if(!isEmptyQuery) res.send(user)
+  // else {
+  //   Object.keys(reqQuery).forEach(function(key) {
+  //      response[key] = user[key]
+  //   })
+  //   res.send(response)
+  // }
 })
 
 router.post('/',  async function (req, res, next) {
